@@ -61,20 +61,21 @@ class GasDischargeApp:
             input("Нажмите Enter для выхода...")
             sys.exit(1)
 
-        # if src_hv.checkPorts() or vi_meter.checkMeters():
-        #     QMessageBox.critical(self.window, "Ошибка", "Ports error")
-        #     return
+        # Commit to start without devices
+        if src_hv.checkPorts() or vi_meter.checkMeters():
+            QMessageBox.critical(self.window, "Ошибка", "Ports error")
+            return
         
-        # if HV_src.init() != 0:
-        #     QMessageBox.critical(self.window, "Ошибка", "Не удалось открыть HV источник")
-        #     return
+        if HV_src.init() != 0:
+            QMessageBox.critical(self.window, "Ошибка", "Не удалось открыть HV источник")
+            return
 
-        # if V1.init("V") or A1.init("A"):
-        #     QMessageBox.critical(self.window, "Ошибка", "Init meters error")
-        #     return
+        if V1.init("V") or A1.init("A"):
+            QMessageBox.critical(self.window, "Ошибка", "Init meters error")
+            return
         
         # Подключаем кнопки
-        self.window.startButton.clicked.connect(self.on_start_probe_clicked)      # Зонд
+        self.window.startButton.clicked.connect(self.on_start_probe_clicked)     # Зонд
         self.window.startButton_IU.clicked.connect(self.on_start_iu_clicked)     # U(I)
 
         self.window.spinBox_discharge_current.setRange(0, 5000)
@@ -118,6 +119,8 @@ class GasDischargeApp:
     def on_start_iu_clicked(self):
         filename = "./datas/data.txt"
 
+        # Снятие показаний
+        # Commit to start without devices
         try:    
             found_ignition()
 
@@ -189,10 +192,14 @@ class GasDischargeApp:
         if (u_diap == 0):
             QMessageBox.critical(self.window, "Ошибка", f"Диапазон напряжения 0!")
             return
-    
+        
+        # Снятие показаний
+        # Commit to start without devices
         HV_src.stepToCur(discharge_current)
+
         get_measure(u_diap * 1000 / 50)
         
+        # Расчеты
         result = analis_measure_with_data()
         if result is None:
             return

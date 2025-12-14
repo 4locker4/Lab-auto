@@ -185,6 +185,7 @@ def plot_fit(U, I_in, A1, A2, b, c, ax=None):
 
 def update_plot(i, step, dev_voltmetr, dev_ampermetr, fig, ax, volt_data, cur_data, start_time, times, output, power):
     print(f"update_plot i: {i}")
+
     if i < 50:
         power.set_voltage(i * step)
         sleep(0.5)
@@ -240,44 +241,6 @@ def update_plot(i, step, dev_voltmetr, dev_ampermetr, fig, ax, volt_data, cur_da
         power.set_voltage(0)
 
     return ax.lines
-
-def show_instruction_dialog():
-    """Показывает модальное окно 'Переключите тумблер' и ждёт нажатия 'Сделано'."""
-    app = QApplication.instance()
-    if app is None:
-        input("Чтобы продолжить, переключите П_2 в '-' и нажмите Enter")
-        return
-
-    dialog = QDialog()
-    dialog.setWindowTitle("Инструкция")
-    dialog.setWindowModality(Qt.ApplicationModal)
-    dialog.setFixedSize(300, 120)
-
-    layout = QVBoxLayout()
-    label = QLabel("Переключите тумблер в положение П₂")
-    label.setAlignment(Qt.AlignCenter)
-    label.setStyleSheet("font-size: 14pt; font-weight: bold;")
-
-    button = QPushButton("Сделано")
-    button.clicked.connect(dialog.accept)
-    button.setStyleSheet("""
-        QPushButton {
-            background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3498db, stop:1 #1abc9c);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px;
-            font-weight: bold;
-        }
-        QPushButton:hover {
-            background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2980b9, stop:1 #16a085);
-        }
-    """)
-
-    layout.addWidget(label)
-    layout.addWidget(button)
-    dialog.setLayout(layout)
-    dialog.exec()  # Блокирующий вызов
     
 def get_measure(U_diap):
     volt_data = []
@@ -349,7 +312,7 @@ def show_instruction_dialog():
     dialog = QDialog()
     dialog.setWindowTitle("Инструкция")
     dialog.setWindowModality(Qt.ApplicationModal)
-    dialog.setFixedSize(300, 120)
+    dialog.setFixedSize(500, 120)
 
     layout = QVBoxLayout()
     label = QLabel("Переключите тумблер в положение П₂")
