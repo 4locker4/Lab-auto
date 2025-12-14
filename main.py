@@ -148,7 +148,7 @@ class GasDischargeApp:
             h3 { color: #FFE873; margin-top: 20px; margin-bottom: 10px; font-weight:bold; }
         </style>
         <h3>Backend:</h3>
-        <p><a href="https://t.me/ProVrestX">Сидиров Андрей Денисович</a>, МФТИ ФРКТ 2025</p>
+        <p><a href="https://t.me/ProVrestX">Сидоров Андрей Денисович</a>, МФТИ ФРКТ 2025</p>
         <p><a href="https://t.me/EgOuOrio">Ремчуков Егор Тимофеевич</a>, МФТИ ФРКТ 2025</p>
         <p><a href="https://t.me/dalleksvsphysics">Хавронин Иван Евгеньевич</a>, МФТИ ФРКТ 2025</p>
         <p><a href="https://t.me/matarenko">Матаренко Григорий Андреевич</a>, МФТИ ЛФИ 2025</p>
@@ -156,6 +156,9 @@ class GasDischargeApp:
 
         <h3>Frontend:</h3>
         <p><a href="https://t.me/EgOuOrio">Ремчуков Егор Тимофеевич</a>, МФТИ ФРКТ 2025</p>
+
+        <h3>Научный руководитель</h3>
+        <p>Амброзевич Сергей Александрович, МФТИ</p>
         """
 
         label = QLabel(html_text)
