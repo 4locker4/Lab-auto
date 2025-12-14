@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Widget</class>
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1400</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Лабораторная работа: Исследование газового разряда</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI';
+    font-size: 10pt;
+}
+QTextBrowser {
+    background-color: #1e1e1e;
+    border: 1px solid #333333;
+    border-radius: 0px;
+    color: #ffffff;
+    padding: 8px;
+    font-size: 11pt;
+}
+QProgressBar {
+    border: 2px solid #333333;
+    border-radius: 0px;
+    background-color: #1e1e1e;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 11pt;
+}
+QProgressBar::chunk {
+    background-color: #FFE873;
+    border-radius: 0px;
+}
+QTabWidget::pane {
+    border: none;
+    background-color: #1a1a1a;
+    border-radius: 0px;
+    margin-top: 4px;
+}
+QTabWidget::tab-bar {
+    alignment: center;
+}
+QTabBar::tab {
+    background-color: #1e1e1e;
+    border: 1px solid #333333;
+    border-bottom: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    padding: 14px 28px;
+    margin-right: 4px;
+    font-size: 12pt;
+    color: #bdc3c7;
+    min-width: 250px;
+}
+QTabBar::tab:selected {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #FF6B6B, stop:1 #FFE873);
+    color: white;
+    font-weight: bold;
+    border: 1px solid #333333;
+}
+QTabBar::tab:hover {
+    background-color: #333333;
+}
+QGraphicsView {
+    border: 2px solid #333333;
+    border-radius: 0px;
+    background-color: #1e1e1e;
+    color: white;
+}
+QPushButton {
+    background-color: #FFE873;
+    color: #121212;
+    border: none;
+    border-radius: 0px;
+    padding: 12px 24px;
+    font-weight: bold;
+    font-size: 11pt;
+}
+QPushButton:hover {
+    background-color: #FFD700;
+}
+QLabel {
+    color: white;
+    font-weight: bold;
+    font-size: 12pt;
+}
+QDoubleSpinBox {
+    background-color: #1e1e1e;
+    color: white;
+    border: 1px solid #333333;
+    border-radius: 0px;
+    padding: 5px;
+    font-size: 12pt;
+    min-height: 40px;
+}
+QDoubleSpinBox::up-button, QDoubleSpinBox::down-button {
+    width: 20px;
+    background-color: #333333;
+    border: 1px solid #333333;
+    border-radius: 0px;
+}
+QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover {
+    background-color: #444444;
+}
+QTableWidget {
+    background-color: #1e1e1e;
+    color: white;
+    gridline-color: #333333;
+    border: 1px solid #333333;
+}
+QTableWidget QHeaderView::section {
+    background-color: #1a1a1a;
+    color: #FFE873;
+    padding: 4px;
+    border: 1px solid #333333;
+}
+</string>
+  </property>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>1360</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Georgia'; font-size:28pt; font-weight:600; color:#FFE873;&quot;&gt;🔬 Исследование газового разряда в неоне&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+
+  <!-- Вкладки -->
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>1360</width>
+     <height>680</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <property name="documentMode">
+    <bool>true</bool>
+   </property>
+
+   <!-- Вкладка 1: График I(U) -->
+   <widget class="QWidget" name="tab_iu">
+    <attribute name="title">
+     <string>⚡Вольт-амперная характеристика</string>
+    </attribute>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <!-- Левая часть: ТОЛЬКО таблица -->
+     <item>
+      <widget class="QTableWidget" name="table_points_iu">
+       <property name="styleSheet">
+        <string notr="true">background-color: #1e1e1e;
+color: white;
+gridline-color: #333333;</string>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>1</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+
+     <!-- Правая панель: управление -->
+     <item>
+      <layout class="QVBoxLayout" name="controlPanelLayout_IU">
+       <!-- Заголовок: КРАСНЫЙ -->
+       <item>
+        <widget class="QLabel" name="label_graphTitle_IU">
+         <property name="text">
+          <string>Построение графика I(U)</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 18pt; font-weight: bold; color: #FFFFFF; padding: 8px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_iu">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #333333;</string>
+         </property>
+        </widget>
+       </item>
+
+       <!-- Кнопка: КРАСНЫЙ ГРАДИЕНТ -->
+       <item alignment="Qt::AlignCenter">
+        <widget class="QPushButton" name="startButton_IU">
+         <property name="text">
+          <string>Начать измерения</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #FF6B6B, stop:1 #FF8E8E);
+color: #121212;
+border: none;
+font-weight: bold;
+font-size: 12pt;
+padding: 10px;</string>
+         </property>
+        </widget>
+       </item>
+
+       <!-- Поле U/I зажигания: КРАСНЫЙ ТЕКСТ -->
+       <item>
+        <widget class="QTextBrowser" name="textBrowser_U_I_zag">
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>350</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #121212;
+border: none;
+color: #FF6B6B;
+font-size: 14pt;
+font-weight: bold;
+padding: 8px;</string>
+         </property>
+         <property name="html">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;U&lt;sub&gt;зажигания&lt;/sub&gt; = — В&lt;br&gt;I&lt;sub&gt;зажигания&lt;/sub&gt; = — мА&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <spacer name="verticalSpacer_IU">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+
+   <!-- Вкладка 2: ВАХ зонда -->
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>📈 Зондовые характеристики</string>
+    </attribute>
+    <layout class="QHBoxLayout" name="horizontalLayout_tab2">
+     <!-- Левая панель: таблицы -->
+     <item>
+      <layout class="QVBoxLayout" name="leftPanelLayout">
+       <!-- Верхняя таблица -->
+       <item>
+        <widget class="QTableWidget" name="table_points">
+         <property name="styleSheet">
+          <string notr="true">background-color: #1e1e1e;
+color: white;
+gridline-color: #333333;</string>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+
+       <!-- Заполнитель -->
+       <item>
+        <spacer name="verticalSpacerTop">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+
+       <!-- Заголовок: "Характеристики зонда" -->
+       <item>
+        <widget class="QLabel" name="label_probe_params">
+         <property name="text">
+          <string>Параметры плазмы</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 14pt; font-weight: bold; color: #FFE873; padding: 3px; background-color: #1a1a1a; border: 1px solid #333333;</string>
+         </property>
+         <property name="maximumHeight">
+          <number>40</number>
+         </property>
+        </widget>
+       </item>
+
+       <!-- Нижняя таблица -->
+       <item>
+        <widget class="QTableWidget" name="table_params">
+         <property name="styleSheet">
+          <string notr="true">background-color: #1e1e1e;
+color: white;
+gridline-color: #333333;</string>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+     <!-- Правая панель: управление -->
+     <item>
+      <layout class="QVBoxLayout" name="controlPanelLayout">
+       <item>
+        <widget class="QLabel" name="label_graphTitle">
+         <property name="text">
+          <string>Построение графика I(U)&#10;для зонда</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 18pt; font-weight: bold; color: #FFE873; padding: 12px 8px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #333333;</string>
+         </property>
+        </widget>
+       </item>
+
+       <!-- Ток разряда -->
+       <item>
+        <layout class="QHBoxLayout" name="layout_discharge_current">
+         <item>
+          <widget class="QLabel" name="label_discharge_current">
+           <property name="text">
+            <string>Ток разряда (мкА):</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-size: 12pt; font-weight: bold; color: #ffffff;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="spinBox_discharge_current">
+           <property name="suffix">
+            <string> мкА</string>
+           </property>
+           <property name="minimum">
+            <double>-500.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>500.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>0.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>10.000000000000000</double>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>180</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+
+       <!-- Модуль напряжения -->
+       <item>
+        <layout class="QHBoxLayout" name="layout_voltage">
+         <item>
+          <widget class="QLabel" name="label_voltage">
+           <property name="text">
+            <string>Модуль напряжения (В):</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-size: 12pt; font-weight: bold; color: #ffffff;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="spinBox_voltage">
+           <property name="suffix">
+            <string> В</string>
+           </property>
+           <property name="minimum">
+            <number>0</number>
+           </property>
+           <property name="maximum">
+            <number>25</number>
+           </property>
+           <property name="value">
+            <number>0</number>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+
+       <!-- Кнопка -->
+       <item alignment="Qt::AlignCenter">
+        <widget class="QPushButton" name="startButton">
+         <property name="text">
+          <string>Начать измерения</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 12pt; font-weight: bold; padding: 10px;</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <spacer name="verticalSpacerRight">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

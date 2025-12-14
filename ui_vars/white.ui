@@ -15,35 +15,35 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
-    background-color: #121212;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
     font-family: 'Segoe UI';
     font-size: 10pt;
 }
 QTextBrowser {
-    background-color: #1e1e1e;
-    border: 1px solid #333333;
+    background-color: #f8f8f8;
+    border: 1px solid #cccccc;
     border-radius: 0px;
-    color: #ffffff;
+    color: #000000;
     padding: 8px;
     font-size: 11pt;
 }
 QProgressBar {
-    border: 2px solid #333333;
+    border: 2px solid #999999;
     border-radius: 0px;
-    background-color: #1e1e1e;
+    background-color: #f0f0f0;
     text-align: center;
-    color: #ffffff;
+    color: #000000;
     font-weight: bold;
     font-size: 11pt;
 }
 QProgressBar::chunk {
-    background-color: #FFE873;
+    background-color: #cccccc;
     border-radius: 0px;
 }
 QTabWidget::pane {
     border: none;
-    background-color: #1a1a1a;
+    background-color: #fafafa;
     border-radius: 0px;
     margin-top: 4px;
 }
@@ -51,53 +51,54 @@ QTabWidget::tab-bar {
     alignment: center;
 }
 QTabBar::tab {
-    background-color: #1e1e1e;
-    border: 1px solid #333333;
+    background-color: #e0e0e0;
+    border: 1px solid #aaaaaa;
     border-bottom: none;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     padding: 14px 28px;
     margin-right: 4px;
     font-size: 12pt;
-    color: #bdc3c7;
+    color: #000000;
     min-width: 250px;
 }
 QTabBar::tab:selected {
-    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #FF6B6B, stop:1 #FFE873);
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
     font-weight: bold;
-    border: 1px solid #333333;
+    border: 1px solid #aaaaaa;
+    border-bottom: 1px solid #ffffff;
 }
 QTabBar::tab:hover {
-    background-color: #333333;
+    background-color: #d0d0d0;
 }
 QGraphicsView {
-    border: 2px solid #333333;
+    border: 2px solid #999999;
     border-radius: 0px;
-    background-color: #1e1e1e;
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
 }
 QPushButton {
-    background-color: #FFE873;
-    color: #121212;
-    border: none;
+    background-color: #e0e0e0;
+    color: #000000;
+    border: 1px solid #999999;
     border-radius: 0px;
     padding: 12px 24px;
     font-weight: bold;
     font-size: 11pt;
 }
 QPushButton:hover {
-    background-color: #FFD700;
+    background-color: #d0d0d0;
 }
 QLabel {
-    color: white;
+    color: #000000;
     font-weight: bold;
     font-size: 12pt;
 }
 QDoubleSpinBox {
-    background-color: #1e1e1e;
-    color: white;
-    border: 1px solid #333333;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #999999;
     border-radius: 0px;
     padding: 5px;
     font-size: 12pt;
@@ -105,26 +106,25 @@ QDoubleSpinBox {
 }
 QDoubleSpinBox::up-button, QDoubleSpinBox::down-button {
     width: 20px;
-    background-color: #333333;
-    border: 1px solid #333333;
+    background-color: #e0e0e0;
+    border: 1px solid #999999;
     border-radius: 0px;
 }
 QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover {
-    background-color: #444444;
+    background-color: #d0d0d0;
 }
 QTableWidget {
-    background-color: #1e1e1e;
-    color: white;
-    gridline-color: #333333;
-    border: 1px solid #333333;
+    background-color: #ffffff;
+    color: #000000;
+    gridline-color: #cccccc;
+    border: 1px solid #999999;
 }
 QTableWidget QHeaderView::section {
-    background-color: #1a1a1a;
-    color: #FFE873;
+    background-color: #f0f0f0;
+    color: #000000;
     padding: 4px;
-    border: 1px solid #333333;
-}
-</string>
+    border: 1px solid #cccccc;
+}</string>
   </property>
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
@@ -143,7 +143,7 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Georgia'; font-size:28pt; font-weight:600; color:#FFE873;&quot;&gt;🔬 Исследование газового разряда в неоне&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Georgia'; font-size:28pt; font-weight:600; color:#000000;&quot;&gt;🔬 Исследование газового разряда в неоне&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
 
@@ -173,11 +173,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <!-- Левая часть: ТОЛЬКО таблица -->
      <item>
       <widget class="QTableWidget" name="table_points_iu">
-       <property name="styleSheet">
-        <string notr="true">background-color: #1e1e1e;
-color: white;
-gridline-color: #333333;</string>
-       </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
        </property>
@@ -196,7 +191,7 @@ gridline-color: #333333;</string>
      <!-- Правая панель: управление -->
      <item>
       <layout class="QVBoxLayout" name="controlPanelLayout_IU">
-       <!-- Заголовок: КРАСНЫЙ -->
+       <!-- Заголовок -->
        <item>
         <widget class="QLabel" name="label_graphTitle_IU">
          <property name="text">
@@ -206,7 +201,7 @@ gridline-color: #333333;</string>
           <set>Qt::AlignCenter</set>
          </property>
          <property name="styleSheet">
-          <string notr="true">font-size: 18pt; font-weight: bold; color: #FFFFFF; padding: 8px;</string>
+          <string notr="true">font-size: 18pt; font-weight: bold; color: #000000; padding: 8px;</string>
          </property>
         </widget>
        </item>
@@ -216,12 +211,12 @@ gridline-color: #333333;</string>
           <enum>Qt::Horizontal</enum>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: #333333;</string>
+          <string notr="true">background-color: #999999;</string>
          </property>
         </widget>
        </item>
 
-       <!-- Кнопка: КРАСНЫЙ ГРАДИЕНТ -->
+       <!-- Кнопка -->
        <item alignment="Qt::AlignCenter">
         <widget class="QPushButton" name="startButton_IU">
          <property name="text">
@@ -234,9 +229,9 @@ gridline-color: #333333;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #FF6B6B, stop:1 #FF8E8E);
-color: #121212;
-border: none;
+          <string notr="true">background-color: #e0e0e0;
+color: #000000;
+border: 1px solid #999999;
 font-weight: bold;
 font-size: 12pt;
 padding: 10px;</string>
@@ -244,7 +239,7 @@ padding: 10px;</string>
         </widget>
        </item>
 
-       <!-- Поле U/I зажигания: КРАСНЫЙ ТЕКСТ -->
+       <!-- Поле U/I зажигания -->
        <item>
         <widget class="QTextBrowser" name="textBrowser_U_I_zag">
          <property name="minimumSize">
@@ -260,9 +255,9 @@ padding: 10px;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: #121212;
-border: none;
-color: #FF6B6B;
+          <string notr="true">background-color: #ffffff;
+border: 1px solid #999999;
+color: #000000;
 font-size: 14pt;
 font-weight: bold;
 padding: 8px;</string>
@@ -309,11 +304,6 @@ padding: 8px;</string>
        <!-- Верхняя таблица -->
        <item>
         <widget class="QTableWidget" name="table_points">
-         <property name="styleSheet">
-          <string notr="true">background-color: #1e1e1e;
-color: white;
-gridline-color: #333333;</string>
-         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -347,7 +337,7 @@ gridline-color: #333333;</string>
         </spacer>
        </item>
 
-       <!-- Заголовок: "Характеристики зонда" -->
+       <!-- Заголовок: "Параметры плазмы" -->
        <item>
         <widget class="QLabel" name="label_probe_params">
          <property name="text">
@@ -357,7 +347,7 @@ gridline-color: #333333;</string>
           <set>Qt::AlignCenter</set>
          </property>
          <property name="styleSheet">
-          <string notr="true">font-size: 14pt; font-weight: bold; color: #FFE873; padding: 3px; background-color: #1a1a1a; border: 1px solid #333333;</string>
+          <string notr="true">font-size: 14pt; font-weight: bold; color: #000000; padding: 3px; background-color: #f0f0f0; border: 1px solid #999999;</string>
          </property>
          <property name="maximumHeight">
           <number>40</number>
@@ -368,11 +358,6 @@ gridline-color: #333333;</string>
        <!-- Нижняя таблица -->
        <item>
         <widget class="QTableWidget" name="table_params">
-         <property name="styleSheet">
-          <string notr="true">background-color: #1e1e1e;
-color: white;
-gridline-color: #333333;</string>
-         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -399,13 +384,14 @@ gridline-color: #333333;</string>
        <item>
         <widget class="QLabel" name="label_graphTitle">
          <property name="text">
-          <string>Построение графика I(U)&#10;для зонда</string>
+          <string>Построение графика I(U)
+для зонда</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
          <property name="styleSheet">
-          <string notr="true">font-size: 18pt; font-weight: bold; color: #FFE873; padding: 12px 8px;</string>
+          <string notr="true">font-size: 18pt; font-weight: bold; color: #000000; padding: 12px 8px;</string>
          </property>
         </widget>
        </item>
@@ -415,7 +401,7 @@ gridline-color: #333333;</string>
           <enum>Qt::Horizontal</enum>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: #333333;</string>
+          <string notr="true">background-color: #999999;</string>
          </property>
         </widget>
        </item>
@@ -429,7 +415,7 @@ gridline-color: #333333;</string>
             <string>Ток разряда (мкА):</string>
            </property>
            <property name="styleSheet">
-            <string notr="true">font-size: 12pt; font-weight: bold; color: #ffffff;</string>
+            <string notr="true">font-size: 12pt; font-weight: bold; color: #000000;</string>
            </property>
           </widget>
          </item>
@@ -470,7 +456,7 @@ gridline-color: #333333;</string>
             <string>Модуль напряжения (В):</string>
            </property>
            <property name="styleSheet">
-            <string notr="true">font-size: 12pt; font-weight: bold; color: #ffffff;</string>
+            <string notr="true">font-size: 12pt; font-weight: bold; color: #000000;</string>
            </property>
           </widget>
          </item>
@@ -515,7 +501,12 @@ gridline-color: #333333;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">font-size: 12pt; font-weight: bold; padding: 10px;</string>
+          <string notr="true">background-color: #e0e0e0;
+color: #000000;
+border: 1px solid #999999;
+font-weight: bold;
+font-size: 12pt;
+padding: 10px;</string>
          </property>
         </widget>
        </item>
