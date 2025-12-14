@@ -27,7 +27,6 @@ def write_cmd(cmd, dev_name):
     finally:
         return
 
-
 def model_func(U, I_in, A1, A2, b, c):
     return I_in * np.tanh(A1 * (U + b)) + A2 * (U + b) + c
 
@@ -157,14 +156,14 @@ def analis_measure_with_data():
     kT_e, T_e, n_e, omega_e, r_D, N_d, alpha = raschet(I_in, A1_opt, A2_opt)
 
     param_dict = {
-        "Ток зонда I_in": f"{I_in * 1e6:.3uS} мкА",
-        "kT_e": f"{kT_e / 1.6e-19:.3uS} эВ",
-        "T_e": f"{T_e / 1e4:.3uS} ×10⁴ К",
-        "n_e": f"{n_e * 1e-16:.3uS} ×10¹⁰ см⁻³",
-        "ω_e": f"{omega_e * 1e-9:.3uS} ×10⁹ рад/с",
-        "r_D": f"{r_D * 1e6:.3uS} ×10⁻⁴ см",
-        "N_d": f"{N_d:.3uS}",
-        "α": f"{alpha * 1e7:.3uS} ×10⁻⁷",
+    "Ток зонда (I_in)": f"{I_in.nominal_value * 1e6:.3f} ± {I_in.std_dev * 1e6:.3f} мкА",
+    "Энергия электронов (kTₑ)": f"{(kT_e / 1.6e-19).nominal_value:.3f} ± {(kT_e / 1.6e-19).std_dev:.3f} эВ",
+    "Температура электронов (Tₑ)": f"({(T_e / 1e4).nominal_value:.4f} ± {(T_e / 1e4).std_dev:.4f}) ×10⁴ К",
+    "Концентрация электронов (nₑ)": f"({(n_e * 1e-16).nominal_value:.3f} ± {(n_e * 1e-16).std_dev:.3f}() ×10¹⁰ см⁻³",
+    "Плазменная частота колебаний электронов (ωₑ)": f"({(omega_e * 1e-9).nominal_value:.3f} ± {(omega_e * 1e-9).std_dev:.3f}) ×10⁹ рад/с",
+    "Электронная поляризационная длина (rₑ)": f"({(r_D * 1e6).nominal_value:.3f} ± {(r_D * 1e6).std_dev:.3f}) ×10⁻⁴ см",
+    "Число ионов в дебаевской сфере (N_d)": f"{N_d.nominal_value:.3f} ± {N_d.std_dev:.3f}",
+    "Степень ионизации плазмы (α)": f"({(alpha * 1e7).nominal_value:.3f} ± {(alpha * 1e7).std_dev:.3f}) ×10⁻⁷",
     }
 
     return volt_data, cur_data, param_dict
