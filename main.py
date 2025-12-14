@@ -8,10 +8,23 @@ from PySide6.QtWidgets import (
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QIODevice
 
+from PySide6.QtCore import QUrl
+
+from PySide6.QtWidgets import (
+    QWidget, QVBoxLayout, QHBoxLayout, QLabel, QSpacerItem, QSizePolicy, QFrame
+)
+from PySide6.QtCore import Qt, QUrl
+from PySide6.QtGui import QDesktopServices
+
 import matplotlib
 matplotlib.use('qtagg')
 import matplotlib.pyplot as plt
 import numpy as np
+
+from PySide6.QtGui import QDesktopServices
+
+import webbrowser
+from PySide6.QtWidgets import QMessageBox
 
 # Импорт для вкладки зонда
 from funcs_zond.zond_vac import analis_measure_with_data, show_graph, get_measure
@@ -61,23 +74,28 @@ class GasDischargeApp:
             sys.exit(1)
 
         # Commit to start without devices
-        if src_hv.checkPorts() or vi_meter.checkMeters():
-            QMessageBox.critical(self.window, "Ошибка", "Ports error")
-            return
+        # if src_hv.checkPorts() or vi_meter.checkMeters():
+        #     QMessageBox.critical(self.window, "Ошибка", "Ports error")
+        #     return
         
-        if HV_src.init() != 0:
-            QMessageBox.critical(self.window, "Ошибка", "Не удалось открыть HV источник")
-            return
+        # if HV_src.init() != 0:
+        #     QMessageBox.critical(self.window, "Ошибка", "Не удалось открыть HV источник")
+        #     return
 
-        if V1.init("V") or A1.init("A"):
-            QMessageBox.critical(self.window, "Ошибка", "Init meters error")
-            return
+        # if V1.init("V") or A1.init("A"):
+        #     QMessageBox.critical(self.window, "Ошибка", "Init meters error")
+        #     return
         
         # Подключаем кнопки
         self.window.startButton.clicked.connect(self.on_start_probe_clicked)     # Зонд
         self.window.startButton_IU.clicked.connect(self.on_start_iu_clicked)     # U(I)
 
         self.window.spinBox_discharge_current.setRange(0, 5000)
+
+        # Добавляем вкладку "Об авторах"
+        if hasattr(self.window, 'tabWidget'):
+            authors_tab = self.create_authors_tab()
+            self.window.tabWidget.addTab(authors_tab, "🎓 Об авторах")
 
         self.window.setWindowTitle("Лабораторная: Газовый разряд")
         self.window.show()
@@ -96,6 +114,84 @@ class GasDischargeApp:
         except Exception as e:
             print(f"Ошибка чтения ignition.txt: {e}")
         return None, None
+
+    def create_authors_tab(self):
+        """Создаёт вкладку 'Об авторах' программно"""
+        # Главный виджет вкладки
+        tab = QWidget()
+        layout = QHBoxLayout(tab)
+
+        # Центрируем содержимое
+        layout.addSpacerItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+
+        # Центральная колонка
+        center_layout = QVBoxLayout()
+        center_layout.setAlignment(Qt.AlignTop)
+
+        # Заголовок
+        title = QLabel("<h2 style='color:#FFE873; text-align:center;'>Об авторах</h2>")
+        title.setAlignment(Qt.AlignCenter)
+        center_layout.addWidget(title)
+
+        # Разделитель
+        line = QFrame()
+        line.setFrameShape(QFrame.HLine)
+        line.setStyleSheet("color: #333333;")
+        center_layout.addWidget(line)
+
+        # Текст с авторами (всё в одном QLabel)
+        html_text = """
+        <style>
+            body { font-family:'Segoe UI'; font-size:13pt; color:#ffffff; line-height:1.6; }
+            a { color:#FFD700; text-decoration:underline; }
+            a:hover { color:#FFE873; }
+            h3 { color: #FFE873; margin-top: 20px; margin-bottom: 10px; font-weight:bold; }
+        </style>
+        <h3>Backend:</h3>
+        <p><a href="https://t.me/ProVrestX">Сидиров Андрей Денисович</a>, МФТИ ФРКТ 2025</p>
+        <p><a href="https://t.me/EgOuOrio">Ремчуков Егор Тимофеевич</a>, МФТИ ФРКТ 2025</p>
+        <p><a href="https://t.me/dalleksvsphysics">Хавронин Иван Евгеньевич</a>, МФТИ ФРКТ 2025</p>
+        <p><a href="https://t.me/matarenko">Матаренко Григорий Андреевич</a>, МФТИ ЛФИ 2025</p>
+        <p><a href="https://t.me/BahbIch">Бахвалов Андрей Семенович</a>, МФТИ ЛФИ 2025</p>
+
+        <h3>Frontend:</h3>
+        <p><a href="https://t.me/EgOuOrio">Ремчуков Егор Тимофеевич</a>, МФТИ ФРКТ 2025</p>
+        """
+
+        label = QLabel(html_text)
+        label.setTextFormat(Qt.TextFormat.RichText)
+        label.setWordWrap(True)
+        label.setOpenExternalLinks(False)  # важно!
+        label.linkActivated.connect(self.on_author_link_clicked)
+        label.setStyleSheet("padding: 15px;")
+        label.setMinimumWidth(500)
+
+        center_layout.addWidget(label)
+        center_layout.addSpacerItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
+
+        layout.addLayout(center_layout)
+        layout.addSpacerItem(QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+
+        return tab
+    
+    def on_author_link_clicked(self, url: str):
+        """Обработка клика по ссылке в QLabel"""
+        if not url.startswith("https://t.me/"):
+            from PySide6.QtWidgets import QMessageBox
+            QMessageBox.warning(self.window, "Ошибка", "Поддерживаются только ссылки на Telegram.")
+            return
+    
+        from PySide6.QtGui import QDesktopServices
+        from PySide6.QtCore import QUrl
+    
+        success = QDesktopServices.openUrl(QUrl(url))
+        if not success:
+            from PySide6.QtWidgets import QMessageBox
+            QMessageBox.critical(
+                self.window,
+                "Ошибка",
+                "Не удалось открыть ссылку. Убедитесь, что установлен Telegram или браузер."
+            )
 
     def plot_iu_graph_separate_window(self, U, I):
         try:
@@ -121,16 +217,16 @@ class GasDischargeApp:
         # Снятие показаний
         # Commit to start without devices
         try:    
-            found_ignition()
+        #     found_ignition()
 
-            HV_src.stepToCur(500)
+        #     HV_src.stepToCur(500)
 
-            file = open(filename, "w")
-            HV_src.stepToCur(4800, file=file, V1=V1, A1=A1)
-            file.close()
+        #     file = open(filename, "w")
+        #     HV_src.stepToCur(4800, file=file, V1=V1, A1=A1)
+        #     file.close()
 
-            V1.reset()
-            A1.reset()
+        #     V1.reset()
+        #     A1.reset()
 
         # Чтение данных
             filename = "./datas/data.txt"
@@ -194,7 +290,7 @@ class GasDischargeApp:
         
         # Снятие показаний
         # Commit to start without devices
-        HV_src.stepToCur(discharge_current)
+        # HV_src.stepToCur(discharge_current)
 
         get_measure(u_diap * 1000 / 50)
         
