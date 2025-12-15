@@ -51,7 +51,7 @@ class GasDischargeApp:
     def __init__(self):
         app = QApplication(sys.argv)
 
-        ui_path = "./ui_vars/white.ui"
+        ui_path = "./ui_vars/black.ui"
         if not os.path.exists(ui_path):
             print(f"[Ошибка] Файл '{ui_path}' не найден!")
             input("Нажмите Enter для выхода...")
